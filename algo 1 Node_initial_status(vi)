@@ -14,7 +14,168 @@ TI = 1
 
 ###############################################################################
 
+# libraries
+import math as m
+import time
 
+###############################################################################
+
+
+def state(vi):
+    # tnajjam t7ott el fonction hedhi fl class
+    pass  # vi.state = ND ?? , initiallement le satute d'un Vi est ND
+
+
+def Receive(msg):
+    # ma 7ajtekch normalement
+    return msg
+
+
+def Get_position(Pv):
+    # tnajjam t7ott el fonction hedhi fl class
+    pass
+
+
+def Get_speed(Sv):
+    # tnajjam t7ott el fonction hedhi fl class
+    pass
+
+
+def Calculate_Density_value(vi):
+    # nombre de liens / voisins
+    dvi = len(vi.neighborhood)
+
+    # nombre de liens du cluster
+    e = 0
+    visited_nodes = {vi}
+    for v in vi.neighborhood:
+        for v_ in v.neighborhood:
+            e += (v_ not in visited_nodes)
+
+        visited_node.add(v)
+
+    # calcul metrique de densite
+    return e / dvi + 1
+
+
+def Calculate_Position_value(vi):
+    # calcul position moyenne
+    n, x_mean, y_mean = 0, 0, 0
+    for v in vi.neighborhood:
+        x += v.x
+        y += v.y
+        n += 1
+
+    x_mean, y_mean = x_mean / n, y_mean / n
+
+    # calcul distance de noeud la plus eloignee de la position moyenne
+    x_max, y_max = 0, 0
+    dist_vi = distance(vi.x, vi.y, x_mean, y_mean)
+    dist_max = dist_vi
+    for v in vi.neighborhood:
+        dist_now = distance(v.x, v.y, x_mean, y_mean)
+        if dist_max < dist_now:
+            dist_max = dist_now
+
+    # calcul metrique de position
+    return dist_vi / dist_max
+
+
+def distance(x1, y1, x2, y2):
+    # distance euclidienne
+    return m.sqrt((x1-x2)**2 + (y1-y2)**2)
+
+
+def Calculate_Mobility_value(vi):
+    # mise a jour de la vitesse moyenne exponentielle
+    vi.S = (1 - alpha) * vi.S + alpha * vi.V
+
+    # VME maximale parmi les voisins
+    S_max = 0
+    for v in vi.neighborhood:
+        S_max = max(S_max, v.S)
+        u += v.S
+    u = u / len(vi.neighborhood)
+
+    # calcul metrique de mobilite
+    return abs(vi.S - u) / (S_max - u)
+
+
+def Calculate_Delay_value(vi):
+    pass  # ???
+
+
+def Calculate_Weight_value_W(vi):
+    pass  # voir ligne 138 et adapter
+
+
+def update_neighborhood(tab):
+    pass  # ???
+
+
+def send(weight_val):
+    # ma 7ajtekch normalement
+    #neighbors = 55
+    #for i in neighbors:
+        # print(message)
+
+
+def brodcast_k_voisin():
+    # ???
+    for Vi in Vehicule:
+        pass  # send Ch_elect msg
+
+
+def weight_val_compair():
+    # ???
+    for x in range(10):
+        pass
+
+
+class Vehicule:
+    # ken t7b tabba3 chktbt ena fl code kelli b3aththou lek. copier coller
+    # kenek be5la chweyya ^^
+    # ebda nadham el code bin el main w fichier class a3tih ay essem w ektb fl
+    # main :
+    #   from ay_essem_ta3_fichier_illi_fih_el_class import Vehicule
+    pass
+
+
+######################################
+# Algo 1 Node_initial_status(vi)
+#####################################
+
+# Ti: temps d'expiration
+
+# state(vi) = ND
+# Receive(Hello)
+# Get_position(Pv)
+# Get_speed(Sv)
+
+vi.state = 'ND'
+vi.Receive(Hello)
+vi.Get_position()
+vi.Get_speed()
+
+
+# while Ti > 0:
+ini, Ti = time.time(), 1  # en secondes
+while time.time() - ini < Ti:
+    Dvi = Calculate_Density_value(vi)
+    Mvi = Calculate_Mobility_value(vi)
+    Pvi = Calculate_Position_value(vi)
+    DEvi = Calculate_Delay_value(vi)
+
+    weight_val = 0
+    for w, m in zip([0.25, 0.25, 0.25, 0.25], [Dvi, Mvi, Pvi, DEvi]):
+        weight_val += w * m
+
+    # Calculate_Weight_value_W(vi)
+    vi.set_weight(weight_val)
+    update_neighborhood(tab)
+    send(weight_val)
+
+###############################################################################
 class Vehicule(ABC):
     table = []
     w = [0.25, 0.25, 0.25, 0.25]  # facteurs de ponderation de la metrique
