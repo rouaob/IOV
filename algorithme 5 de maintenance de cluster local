@@ -1,0 +1,35 @@
+for Vi in Vehicule:
+
+     if Vi.state = "Cluster_Head" : # and Vi veux quitter le cluster:
+         # Vi distribue un message de rôle abandonné aux membres de son cluster.
+         # Vi change son statut en non-décidé et recherche un nouveau cluster pour le rejoindre.
+         # ==> Vi.state = "ND"
+
+         for Vj in Vehicule:
+             # Vj modifie ses informations de cluster, update_cluster_tab
+             # Vj appelle l'algorithme d'élection CH pour resélectionner un nouveau CH.
+             # ==> donc lehne lezem chaque algo n7otouh fi .py wa7dou sous forme fnct wala class wala mana3rafech chnouwa
+             pass
+         pass
+
+         else
+
+         if Vi.state = " membre principal " or Vi.state = " membre de marge " or Vi.state = " Passerelle ":
+             # Vi envoie (move-message) à son CH.
+             # Vi change son statut en non-décidé et recherche un nouveau cluster pour le rejoindre.
+
+             for Vj in Vehicule:
+                 if Vj.state = " Cluster_Head ":
+                      # Modifie les informations sur le nœud mobile.
+                      # informer les nœuds membres du nœud quittant en leur envoyant un message d'information.
+                      pass
+                 pass
+             pass
+
+         if Vi.state = " Passerelle ":
+             #  CH appelle l'algorithme d'élection de passerelle pour réélire une nouvelle passerelle.
+             pass
+
+         else
+          # Met à jour les informations relatives au nœud quittant.
+     pass
