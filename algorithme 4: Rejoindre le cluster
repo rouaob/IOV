@@ -1,0 +1,19 @@
+for Vi in Vehicule and Vi.state = "ND":
+    # Vi envoie un message de demande au responsable de cluster correspondant pour rejoindre le cluster
+    send(join_request,Vi,cluster_head)
+    # et attend une période T pour la réponse. exp: wait(10s)
+
+    if : # Si (aucune réponse n arrive après temps T) alors ==> if T=0 and receive == null
+        # Vi augmente sa puissance de transmission pour atteindre plus des CHs.
+        # Vi envoie un message de demande aux autres chefs de cluster
+    else
+       if : # Si (Vi reçoit un message Join Accept) alors ==> if Receive(Vi,join_accept)
+            # Vi rejoint le cluster correspondant
+            # et met à jour son statut au nœud membre (Core ou marge) et toutes les informations importante
+            # ==> Vi.state='membre_de_marge' , update_neighboorhood_table
+            if : # Si (il y a plus d un CH avec la même valeur de poids (W) la plus basse) alors
+                  # Vi rejoint le CH avec l'ID le plus bas et met à jour son statut au nœud membre (Core ou marge)
+                  # et toutes les informations importantes.
+                  else
+                    # Vi rejoint le CH avec la valeur de poids la plus faible (W)
+                    # et met à jour son statut au nœud membre (Core ou marge) et toutes les informations importantes.
