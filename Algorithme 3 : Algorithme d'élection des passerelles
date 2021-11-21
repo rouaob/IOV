@@ -1,0 +1,15 @@
+for Vi in Vehicule and Vi.state = "membre de marge":
+
+    if : # Si (𝑴𝒗𝒊 == " Minimum ") alors " Mvi : mobility of a noeud
+        Vi.state = "Passerelle" # Statut (Vi) = Passerelles.
+        send(Gateway_select,Vi) # Envoyer (Gateway_select) message au nœud sélectionné
+
+    for Vj in Vehicule and Vj.state = "membre de marge" and ( Vi ≠ Vj):
+
+        if : # Si (𝑴𝒗𝒊 = 𝑴𝒗j) alors
+            Vi.state = "Passerelle" # le cluster head choisit le nœud avec le poids le plus faible.
+            pass
+
+        if : # Si (𝑾𝒗𝒊 = 𝑾𝒗j) alors
+            Vi.state = "Passerelle" # le cluster head choisit le nœud avec le plus petit ID.
+            pass
