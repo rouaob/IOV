@@ -1,0 +1,125 @@
+# -*- coding: utf-8 -*-
+
+from abc import ABC, abstractmethod  # pour heritage
+import matplotlib.pyplot as plt      # pour visualization ?
+import csv
+import time
+
+###############################################################################
+
+# Variables globales
+
+FILE = None
+TI = 1
+
+###############################################################################
+
+
+class Vehicule(ABC):
+    table = []
+    w = [0.25, 0.25, 0.25, 0.25]  # facteurs de ponderation de la metrique
+
+    def __init__(self, row):
+        # attributs vierges
+        self.voisins: set = {}  # aucun voisin au depart
+        self.statut = 'ND'
+        self.poids = float('inf')
+        self.param = {'Dv': 0, 'Mv': 0, 'Pv': 0, 'EDv': 0}  # parametres poids
+        self.sous_param: dict[str] = {}  # TODO sous-parametres calcul poids
+
+        # attributs initialises
+        self.id = int(row['id'])
+        self.position = (float(row['x']), float(row['y']))  # TODO a renommer
+        self.vitesse = (float(row['u']), float(row['v']))  # TODO a renommer
+
+        # ajout du vehicule dans la table
+        Vehicule.table.append(self)
+
+    ###
+
+    def calculer_poids(self):
+        self.mettre_a_jour_parametres()
+        self.poids = sum(wi * pi for wi, pi in zip(Vehicule.w, self.param))
+
+    def envoyer_message(self, msg_type):
+        if msg_type == 'hello':
+            pass  # TODO
+
+        elif msg_type == 'weight_val':
+            pass  # TODO
+
+        elif msg_type == 'CH_elect':
+            pass  # TODO
+
+        elif msg_type == 'join_request':
+            pass  # TODO
+
+        elif msg_type == 'join_accept':
+            pass  # TODO
+
+        else:
+            raise Exception(f"Aucun message de ce type: {msg_type}")
+
+    def mettre_a_jour_parametres(self):
+        depart = time.time()  # depart chronometre
+        
+        # boucle avec TI, toujours pas compris, sry
+        # while time.time() - depart < TI:
+            # ...
+            # trouver voisins
+            # faire quelque chose avec voisins
+            # mettre a jour parametres
+            # mettre a jour voisins : self.voisins.update()
+
+        pass  # TODO
+
+    def recevoir_message(self):
+        pass  # ???
+
+    #######################################################################
+
+    # getters et setters
+
+    def get_id(self):
+        return self.id
+
+    def get_position(self):
+        return self.position
+
+    def get_statut(self):
+        return self.statut
+
+    def get_vitesse(self):
+        return self.vitesse
+
+    ###
+
+    def set_position(self, p: tuple[float, float]):
+        self.position = p
+
+    def set_statut(self, s: str):
+        if s not in {'ND', 'CH', 'passerelle', 'CMN', 'MMN'}:
+            # send error to stderr and stops program
+            raise Exception(f"Aucun statut appelé '{s}'.")
+        self.statut = s
+
+    def set_vitesse(self, v: tuple[float, float]):
+        self.vitesse = v
+
+###############################################################################
+
+
+if __name__ == '__main__':
+
+    # phase initiale 1 : declarer les vehicules
+    with open(FILE, newline='') as csvfile:
+        parsedfile = csv.DictReader(csvfile, delimiter=',')
+        for row in parsedfile:
+            Vehicule(row)
+
+    for v in Vehicule.table:
+        # phase initiale 2 : parametrer les vehicules
+        v.calculer_poids()
+
+        # phase initiale 3 : informer les voisins
+        v.envoyer_message('weight_val')
