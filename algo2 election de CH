@@ -1,0 +1,48 @@
+def Calculate_Weight_value_W(vi):
+    return weight_val
+
+def update_neighborhood(tab):
+    pass
+
+def send(weight_val):
+    neighbors=55
+    for i in neighbors:
+        print(message)
+
+def brodcast_k_voisin:
+    for Vi in Vehicule:
+        pass # send Ch_elect msg
+            
+def weight_val_compair():
+    for x in range(10):
+        pass 
+    
+
+class Vehicule:
+    pass 
+
+Vj = Vehicule
+Vi = Vehicule
+
+Recevoir (weight-val) 
+for Vj in Vehicule and (Vi ≠ Vj): # Pour ((tous Vj ∈ Ɲ(Vi)) et (Vi ≠Vj)) faire 
+    # Extraire et stocker les informations reçues des messages weight-val dans sa table de voisins.
+    # ==> EL pt hethi 3ibara bech ta3mal update lel neighborhood table
+    # Compare les poids reçus de tous ses voisins K-hop avec sa propre valeur de poids.
+    # ==> appel lel weight_val_compair() or directly tsir la compairson ici et val min te5ou val min bech tsahal el if eli juste apres
+
+    if : # Si (W (Vi) == " minimum ") alors 
+        Vi.state = "Cluster_Head" # Vi est élu comme CH 
+        brodcast_k_voisin(CH_elect (Vi)) # Diffusion-K-Voisins (CH_elect (Vi))
+
+    else
+        if : # Si (I𝒅𝒗𝒊 > 𝑰𝒅𝒗𝒋) alors 
+            Vj.state = "Cluster_Head" # Vj est élu comme CH
+            brodcast_k_voisin(CH_elect (Vj))
+    else
+        # Vi attend la réception des messages CH_elect envoyés par différents CH élus
+        Receive(CH_elect) 
+        # et choisit le CH qui a la valeur de poids la plus faible parmi eux   
+        weight_val_compair(state="Cluster_Head",weight_val)    
+  
+
