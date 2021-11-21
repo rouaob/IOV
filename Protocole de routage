@@ -1,0 +1,35 @@
+#maximum transmission range = 250m
+mtr = 250
+#Current_node: the packet carrier node
+#distination_node: destination node of the packet
+#D: distance entre deux nœuds
+#S(x): the difference between the current node speed and the neighbor node speed.
+##Vc : speed vector for current node
+#Dc : shortest distance from packet forwarding node C to destination D
+
+#foncution getSpeed()
+def getSpeed(var1):
+    #Continue
+    pass
+
+#foncution distance()
+def distance(var1, var2):
+    #Continue
+    pass
+best_PSi=0
+Vc = getSpeed(neigh_i)
+Dc = distance(Current_node, distination_node)
+
+for neighbors in Current_node:
+    Vi = getSpeed(neigh_i)
+    Di = distance(distination_node, neigh_i)
+    Dci = distance (Current_node, neigh_i)
+    if Dci < mtr :
+        LSi(x)= mtr/Dci
+        Si(x) = abs(Vc - Vi)/10
+        PSi = LSi(x) * Si(x)
+        if PSi > best_PSi:
+            best_PSi = PSi
+            NextHop = neigh_i
+        else:
+            NextHop = Current_node
